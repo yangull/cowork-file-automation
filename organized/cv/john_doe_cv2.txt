@@ -1,0 +1,16 @@
+John Doe
+Software Engineer
+
+EXPERIENCE
+Senior Developer — Acme Corp (2020–present)
+  - Led backend API development in Python and Go
+  - Mentored a team of 4 junior engineers
+
+Junior Developer — Startup XYZ (2018–2020)
+  - Built REST APIs using Django
+
+EDUCATION
+BSc Computer Science — State University, 2018
+
+SKILLS
+Python, Go, Docker, PostgreSQL, AWS
