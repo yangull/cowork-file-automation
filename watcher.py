@@ -9,6 +9,25 @@ from classifier import classify_file
 from organizer import organize_file
 
 WATCH_DIR = Path(__file__).parent / "watch"
+_STABLE_POLLS = 3       # consecutive same-size reads required
+_POLL_INTERVAL = 0.2    # seconds between size checks
+
+
+def _wait_until_written(path: Path) -> None:
+    """Block until the file size stops changing across consecutive polls."""
+    last_size = -1
+    stable = 0
+    while stable < _STABLE_POLLS:
+        try:
+            size = path.stat().st_size
+        except FileNotFoundError:
+            size = -1
+        if size != -1 and size == last_size:
+            stable += 1
+        else:
+            stable = 0
+            last_size = size
+        time.sleep(_POLL_INTERVAL)
 
 
 def _read_text(path: Path) -> str | None:
@@ -27,6 +46,7 @@ class FileOrganiserHandler(FileSystemEventHandler):
             return
 
         path = Path(event.src_path)
+        _wait_until_written(path)
         content = _read_text(path)
 
         if content is None:
