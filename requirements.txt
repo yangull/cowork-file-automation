@@ -1,6 +1,7 @@
 anthropic
 watchdog
 python-dotenv
+pypdf
 
 # dev
 pytest

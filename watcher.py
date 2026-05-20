@@ -1,6 +1,7 @@
 import time
 from pathlib import Path
 
+from pypdf import PdfReader
 from watchdog.events import FileSystemEventHandler, FileCreatedEvent
 from watchdog.observers import Observer
 
@@ -11,6 +12,9 @@ WATCH_DIR = Path(__file__).parent / "watch"
 
 
 def _read_text(path: Path) -> str | None:
+    if path.suffix.lower() == ".pdf":
+        reader = PdfReader(path)
+        return "\n".join(page.extract_text() or "" for page in reader.pages)
     try:
         return path.read_text(encoding="utf-8")
     except UnicodeDecodeError:
