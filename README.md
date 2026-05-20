@@ -101,8 +101,8 @@ cowork-file-automation/
 ├── watcher.py       # watchdog Observer setup and event handler
 ├── classifier.py    # Claude API call — returns a category string
 ├── organizer.py     # Moves the file to organized/<category>/
-├── watch/           # Drop files here (created automatically)
-├── organized/       # Output — subfolders per category
+├── watch/           # Drop files here (created automatically, git-ignored)
+├── organized/       # Output — subfolders per category (git-ignored)
 ├── tests/
 │   ├── test_classifier.py
 │   └── test_organizer.py
