@@ -70,13 +70,16 @@ The watcher starts and prints its status:
 Watching /path/to/cowork-file-automation/watch ...
 ```
 
-Drop any text file into the `watch/` directory. The tool processes it immediately:
+Drop any text or PDF file into the `watch/` directory. The tool processes it immediately:
 
 ```
 [done]  john_doe_cv.txt → cv → organized/cv/john_doe_cv.txt
 [done]  invoice_feb.txt → invoice → organized/invoice/invoice_feb.txt
+[done]  job_posting.pdf → job_description → organized/job_description/job_posting.pdf
 [skip]  photo.png — binary file
 ```
+
+PDF text is extracted automatically using [pypdf](https://pypdf.readthedocs.io/) before classification. Scanned PDFs with no extractable text are classified as `other`.
 
 Press `Ctrl+C` to stop.
 
